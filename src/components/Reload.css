@@ -1,0 +1,26 @@
+.reload-wrapper {
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+}
+
+.reload-title {
+  /* border: 1px solid black; */
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+.reload-icon {
+  /* border: 1px solid black; */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 10px;
+  background-image: url('https://icon-library.com/images/2018/7824499_expert-icon-cycle-icon-green-png-png-download.png');
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
