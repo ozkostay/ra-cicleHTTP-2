@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import CardList from './components/CardList';
 import Reload from './components/Reload';
+import InputForm from './components/InputForm';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <div className='App'>
       <Reload />
       <CardList />
+      <InputForm />
     </div>
   );
 }
