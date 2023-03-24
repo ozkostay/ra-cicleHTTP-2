@@ -1,4 +1,8 @@
-import React from "react"
+import React from 'react';
+// import uuid from 'react-uuid';
+import Reload from './Reload';
+import CardList from './CardList';
+import InputForm from './InputForm';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -31,8 +35,7 @@ export default class Main extends React.Component {
   addNote(prm) {
     console.log('Добавляем данные:', prm);
     let note = {
-          "id": 0,
-          "content": "То, что было введено в поле ввода 3"
+          'content': "То, что было введено в поле ввода 3"
         }
     const requestOptions = {
       method: 'POST',
@@ -40,24 +43,41 @@ export default class Main extends React.Component {
       body: JSON.stringify(note)
     };
     fetch(this.URL7777, requestOptions)
-        .then(response => response.json())
-        .then(data => {
-          console.log('data2', data);
-          console.log('В addNote перед вызовом this.fetchGet()');
+      .then(response => response.ok)
+      .then(resOk => {
+        if (resOk) {
           this.fetchGet();
-        });
+        } else {
+          console.error('Не удалось вставить данные');
+        }
+      })
   }
 
-  deleteNote() {
-
+  deleteNote(prm) {
+    console.log('Удаляем данные:', prm);
+    // const requestOptions = {
+    //   method: 'DELETE',
+    // };
+    // fetch(this.URL7777, requestOptions)
+    //   .then(response => response.ok)
+    //   .then(resOk => {
+    //     if (resOk) {
+    //       this.fetchGet();
+    //     } else {
+    //       console.error('Не удалось вставить данные');
+    //     }
+    //   })
   }
 
   render() {
     return (
       <>
-        <button onClick={() => this.addNote('Какие-то параметры')}>addNote</button>
+        {/* <button onClick={() => this.addNote('Какие-то параметры')}>addNote</button> */}
+        <Reload />
+        <CardList />
+        <InputForm />
         <div>
-          {this.state.items.map((item) =>  <p key={item.id}> {item.name} === {item.content}</p>)}
+          {this.state.items.map((item) =>  <div key={item.id}>id={item.id} content: {item.content}</div>)}
         </div>
       </>
     )

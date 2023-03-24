@@ -1,0 +1,44 @@
+.input-wrapper {
+  margin: 30px;
+  /* border: 1px solid black; */
+  /* position: relative;
+  max-width: 420px; */
+}
+
+.input-form {
+  /* border: 1px solid black; */
+  max-width: 420px;
+  height: 140px;
+  display: block;
+}
+
+.input-title {
+  padding: 0 20px 20px 20px;
+}
+
+.input-text {
+  font-size: 25px;
+  border: none;
+  display: block;
+  position: relative;
+}
+
+
+.input-send {
+  
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 7px; 
+  right: 20px;
+  text-align: center;
+  font-size: 25px;
+  line-height: 30px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+  
+}
