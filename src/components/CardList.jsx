@@ -2,12 +2,10 @@ import React from 'react';
 import './CardList.css';
 import Card from './Card';
 
-export default function CardList() {
+export default function CardList({items, fnDelete}) {
   return (
     <div className='cardlist-wrapper'>
-      <Card />
-      <Card />
-      <Card />
+      {items.map((i) => <Card key={i.id} item={i} fnDelete={fnDelete}/>)}
     </div>
   )
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 import './Card.css';
 
-export default function Card() {
+export default function Card({item, fnDelete}) {
   return (
     <div className='card'>
-      <div className='card-close'>&#9747;</div>
-      <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ratione magnam itaque. Nobis rerum sequi soluta temporibus maiores harum mollitia.</span>
+      <div className='card-close' onClick={() => fnDelete(item.id)}>&#9747;</div>
+      <span>{item.content}</span>
     </div>
   )
 }

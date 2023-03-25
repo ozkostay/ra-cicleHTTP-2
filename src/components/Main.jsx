@@ -8,17 +8,17 @@ export default class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: [1,2,3]
+      items: []
     }
     this.URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail';
-    this.URL7777 = 'http://localhost:7777/notes';
+    this.URL7777 = 'http://localhost:7777/notes/';
   }
 
   fetchGet() {
+    console.log('fetchGet');
     fetch(this.URL7777)
     .then(res => res.json())
     .then(result => {
-      console.log('Данные из запроса', result);
       this.setState(
         {
           items: result
@@ -29,13 +29,11 @@ export default class Main extends React.Component {
   
   componentDidMount() {
     this.fetchGet();
-    console.log('1', this.state.items);
   }
 
-  addNote(prm) {
-    console.log('Добавляем данные:', prm);
+  addNote(content) {
     let note = {
-          'content': "То, что было введено в поле ввода 3"
+          'content': content
         }
     const requestOptions = {
       method: 'POST',
@@ -53,32 +51,27 @@ export default class Main extends React.Component {
       })
   }
 
-  deleteNote(prm) {
-    console.log('Удаляем данные:', prm);
-    // const requestOptions = {
-    //   method: 'DELETE',
-    // };
-    // fetch(this.URL7777, requestOptions)
-    //   .then(response => response.ok)
-    //   .then(resOk => {
-    //     if (resOk) {
-    //       this.fetchGet();
-    //     } else {
-    //       console.error('Не удалось вставить данные');
-    //     }
-    //   })
+  deleteNote(id) {
+    const requestOptions = {
+      method: 'DELETE'
+    };
+    fetch(this.URL7777 + id, requestOptions)
+      .then(response => response.ok)
+      .then(resOk => {
+        if (resOk) {
+          this.fetchGet();
+        } else {
+          console.error('Не удалось удалить данные');
+        }
+      })
   }
 
   render() {
     return (
       <>
-        {/* <button onClick={() => this.addNote('Какие-то параметры')}>addNote</button> */}
-        <Reload />
-        <CardList />
-        <InputForm />
-        <div>
-          {this.state.items.map((item) =>  <div key={item.id}>id={item.id} content: {item.content}</div>)}
-        </div>
+        <Reload fetchGet={this.fetchGet.bind(this)}/>
+        <CardList items={this.state.items} fnDelete={this.deleteNote.bind(this)}/>
+        <InputForm fnAdd={this.addNote.bind(this)}/>
       </>
     )
   }
